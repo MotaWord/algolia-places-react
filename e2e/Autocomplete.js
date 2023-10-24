@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AlgoliaPlaces from '../src';
 
-const Autocomplete = ({ onCallback }) => {
+function Autocomplete({ onCallback }) {
   const handleChange = (data) => {
     onCallback({
       name: 'onChange',
@@ -79,7 +79,7 @@ const Autocomplete = ({ onCallback }) => {
       onError={handleError}
     />
   );
-};
+}
 
 Autocomplete.propTypes = {
   onCallback: PropTypes.func.isRequired,

@@ -34,7 +34,7 @@ module.exports = {
           replacements: [
             {
               pattern: /e.data = data/g,
-              replacement: function() { 
+              replacement: function() {
                 return `
                   var dataPropDescriptor = Object.getOwnPropertyDescriptor(e, 'data')
                   if (!dataPropDescriptor || dataPropDescriptor.writable) {
@@ -42,13 +42,13 @@ module.exports = {
                       e.data = data
                     } catch (error) { }
                   }
-                `; 
+                `;
               },
-            }
-          ]
+            },
+          ],
         }),
-      }
-    ]
+      },
+    ],
   },
 
   plugins: [

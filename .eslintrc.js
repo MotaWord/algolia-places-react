@@ -1,34 +1,34 @@
 module.exports = {
-  "parser": "babel-eslint",
-  "extends": [
-    "airbnb",
+  parser: '@babel/eslint-parser',
+  extends: [
+    'airbnb',
   ],
-  "plugins": [
-    "jest"
+  plugins: [
+    'jest',
   ],
-  "env": {
-    "jest/globals": true
+  env: {
+    'jest/globals': true,
   },
-  "rules": {
-    "react/jsx-filename-extension": 0,
-    "react/jsx-props-no-spreading": 0,
-    "indent": ["error", 2],
-    "react/destructuring-assignment": 0,
-    "react/state-in-constructor": 0,
-    "react/static-property-placement": 0,
+  rules: {
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
+    'react/jsx-props-no-spreading': 'off',
+    indent: ['error', 2],
+    'react/destructuring-assignment': 'off',
+    'react/state-in-constructor': 'off',
+    'react/static-property-placement': 'off',
   },
-  "overrides": [
+  overrides: [
     {
-      "files": ["*.test.js"],
-      "globals": {
-        "Event": true,
-        "KeyboardEvent": true,
-        "MouseEvent": true,
-        "window": true,
+      files: ['*.test.js'],
+      globals: {
+        Event: 'readonly',
+        KeyboardEvent: 'readonly',
+        MouseEvent: 'readonly',
+        window: 'readonly',
       },
-      "rules": {
-        "no-console": 0,
-        "no-empty": 0,
+      rules: {
+        'no-console': 'off',
+        'no-empty': 'off',
       },
     },
   ],

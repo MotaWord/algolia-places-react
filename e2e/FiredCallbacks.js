@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import JsonView from 'react-json-view';
 import { Heading } from 'rebass';
 import styled from 'styled-components';
+import { JSONTree } from 'react-json-tree';
 
 const PanelHeader = styled.div`
   background: blue;
@@ -13,37 +13,42 @@ const PanelHeader = styled.div`
   padding: 10px;
 `;
 
-const FiredCallbacks = ({ callbacks }) => (
-  <>
-    <Heading fontSize={3}>Fired callbacks:</Heading>
-    {callbacks
-      .map((cb, index, arr) => (
-        <div
-          color="blue"
-          key={(arr.length - index).toString()}
-          mt={20}
-        >
-          <PanelHeader
-            bg="blue"
-            color="white"
-          >
+const CallbackPanel = styled.div`
+  color: blue;
+  margin-top: 20px;
+`;
+
+function FiredCallbacks({ callbacks }) {
+  return (
+    <>
+      <Heading fontSize={3}>Fired callbacks:</Heading>
+      {callbacks.map((cb, index, arr) => (
+        <CallbackPanel key={(arr.length - index).toString()}>
+          <PanelHeader>
             {cb.name}
           </PanelHeader>
           {cb.args && (
-            <JsonView
-              src={cb.args}
-              collapsed={1}
-              name={false}
-              enableClipboard={false}
+            <JSONTree
+              data={cb.args}
+              shouldExpandNode={() => true}
             />
           )}
-        </div>
+        </CallbackPanel>
       ))}
-  </>
-);
+    </>
+  );
+}
 
 FiredCallbacks.propTypes = {
-  callbacks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  callbacks: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      args: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array,
+      ]),
+    }),
+  ).isRequired,
 };
 
 export default FiredCallbacks;
